@@ -1,4 +1,3 @@
-import { ROLE } from "../constants";
 import { getUser,  addUser, createSession} from "./index";
 
 
