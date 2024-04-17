@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Header } from './components';
+import { Header, Footer } from './components';
 import { styled } from 'styled-components';
 
 const Content = styled.div`
@@ -20,7 +20,6 @@ const AppColumn = styled.div`
 `;
 
 
-const Footer = () => <footer>Футер</footer>;
 
 
 
