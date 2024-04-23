@@ -33,17 +33,15 @@ export const server = {
 		};
 	},
 	async register(regLogin, regPassword) {
-		const users = await getUser(regLogin);
-		const user = users.find(({ login }) => login === regLogin);
+		const existedUser = await getUser(regLogin);
 
-		if (user) {
+		if (existedUser) {
 			return {
 				error: 'Такой пользователь уже существует',
 				res: null,
 			};
 		}
-		await addUser(regLogin, regPassword)
-
+		 const user = await addUser(regLogin, regPassword)
 
 		return {
 			error: null,
@@ -53,6 +51,7 @@ export const server = {
 				roleId: user.role_id,
 				session: sessions.create(user)
 			},
+
 		};
 	},
 };

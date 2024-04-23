@@ -1,6 +1,6 @@
-import { currentDate } from "./current-date";
+import { currentDate } from './current-date';
 
-export const addUser = (login, password) => {
+export const addUser = (login, password) =>
 	fetch('http://localhost:3005/users', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -10,5 +10,4 @@ export const addUser = (login, password) => {
 			register_at: currentDate(),
 			role_id: 2,
 		}),
-	});
-};
+	}).then((createdUser)=>createdUser.json())
