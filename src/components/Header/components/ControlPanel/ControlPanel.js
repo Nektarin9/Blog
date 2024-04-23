@@ -1,18 +1,46 @@
-import { Icon } from '../../../icon/icon';
+import { Button, Icon } from '../../../index';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	selectUserRole,
+	selectUserLogin,
+	selectUserSession,
+} from '../../../../selectirs';
+import { ROLE } from '../../../../constants';
 import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../../actions';
 import styled from 'styled-components';
 
 const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const roleId = useSelector(selectUserRole);
+	const login = useSelector(selectUserLogin);
+	const session = useSelector(selectUserSession);
+
 	return (
 		<div className={className}>
 			<RightAligned>
-				<StyledLink to={'/login'}>Войти</StyledLink>
+				{roleId === ROLE.GUEST ? (
+					<Button>
+						<Link to={'/login'}>Войти</Link>
+					</Button>
+				) : (
+					<>
+						<UserName>{login}</UserName>
+						<StyleIcon>
+							<Icon
+								id="fa-sign-out"
+								margin="0 0 0 10px"
+								onClick={() => dispatch(logout(session))}
+							/>
+						</StyleIcon>
+					</>
+				)}
 			</RightAligned>
 			<RightAligned>
-				<StyleButton onClick={() => navigate(-1)}>
+				<StyleIcon onClick={() => navigate(-1)}>
 					<Icon id="fa-backward" margin="10px 0 0 0" />
-				</StyleButton>
+				</StyleIcon>
 
 				<Link to={'/post'}>
 					<Icon id="fa-file-text-o" margin="10px 0 0 16px" />
@@ -25,25 +53,19 @@ const ControlPanelContainer = ({ className }) => {
 	);
 };
 
-const StyleButton = styled.div`
+const StyleIcon = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
-`
+`;
 
 const RightAligned = styled.div`
 	display: flex;
+	align-items: center;
 	justify-content: flex-end;
 `;
-const StyledLink = styled(Link)`
+const UserName = styled.div`
 	font-size: 18px;
-	width: 100px;
-	height: 32px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #eee;
-	border: 1px solid black;
+	font-weight: bold;
 `;
-
 export const ControlPanel = styled(ControlPanelContainer)``;

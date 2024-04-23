@@ -1,18 +1,20 @@
-import { getUser,  addUser, createSession} from "./index";
+import { getUser,  addUser, sessions} from "./index";
 
 
 
 export const server = {
+	async logout(session) {
+		sessions.remove(session)
+	},
 	async authorize(authLogin, userPassword) {
-		const users = await getUser(authLogin);
-		const user = users.find(({ login }) => login === authLogin);
+		const user = await getUser(authLogin);
 		if (!user) {
 			return {
 				error: 'Такой пользователь не найден',
 				res: null,
 			};
 		}
-		if (userPassword !== user.userPassword) {
+		if (userPassword !== user.password) {
 			return {
 				error: 'Неверный пароль',
 				res: null,
@@ -21,7 +23,13 @@ export const server = {
 
 		return {
 			error: null,
-			res: createSession(user.role_id),
+			res: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user)
+			},
+
 		};
 	},
 	async register(regLogin, regPassword) {
@@ -39,7 +47,12 @@ export const server = {
 
 		return {
 			error: null,
-			res: createSession(user.role_id),
+			res: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user)
+			},
 		};
 	},
 };

@@ -1,4 +1,4 @@
-import { currentDate } from './get-user';
+import { currentDate } from "./current-date";
 
 export const addUser = (login, password) => {
 	fetch('http://localhost:3005/users', {
