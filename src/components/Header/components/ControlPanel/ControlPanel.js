@@ -27,20 +27,16 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<StyleIcon>
 							<Icon
 								id="fa-sign-out"
 								margin="0 0 0 10px"
 								onClick={() => dispatch(logout(session))}
 							/>
-						</StyleIcon>
 					</>
 				)}
 			</RightAligned>
 			<RightAligned>
-				<StyleIcon onClick={() => navigate(-1)}>
-					<Icon id="fa-backward" margin="10px 0 0 0" />
-				</StyleIcon>
+					<Icon onClick={() => navigate(-1)} id="fa-backward" margin="10px 0 0 0" />
 
 				<Link to={'/post'}>
 					<Icon id="fa-file-text-o" margin="10px 0 0 16px" />
@@ -53,11 +49,7 @@ const ControlPanelContainer = ({ className }) => {
 	);
 };
 
-const StyleIcon = styled.div`
-	&:hover {
-		cursor: pointer;
-	}
-`;
+
 
 const RightAligned = styled.div`
 	display: flex;

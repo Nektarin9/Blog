@@ -1,4 +1,4 @@
-import { currentDate } from './current-date';
+import { currentDate } from '../utils';
 
 export const addUser = (login, password) =>
 	fetch('http://localhost:3005/users', {
@@ -10,4 +10,4 @@ export const addUser = (login, password) =>
 			register_at: currentDate(),
 			role_id: 2,
 		}),
-	}).then((createdUser)=>createdUser.json())
+	}).then((createdUser) => createdUser.json());
