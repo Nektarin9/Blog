@@ -51,7 +51,7 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 			<Icon
 				size="21px"
 				id="fa-trash-o"
-				margin="0 5px 0 10px"
+				margin="0 8px 0 10px"
 				onClick={() => onNewCommentRemove(id)}
 			/>
 		</div>

@@ -8,6 +8,8 @@ import { styled } from 'styled-components';
 
 const Page = styled.div`
 	padding: 120px 0 20px;
+	height: auto;
+	background-color: white;
 `;
 
 const AppColumn = styled.div`
@@ -42,6 +44,8 @@ export const Blog = () => {
 						<Route path="/users" element={<Users />} />
 						<Route path="/post" element={<div>Новая статься</div>} />
 						<Route path="/post/:id" element={<Post/>} />
+						<Route path="/post/:id/edit" element={<Post/>} />
+
 						<Route path="*" element={<div>Ошибка</div>} />
 					</Routes>
 				</Page>
