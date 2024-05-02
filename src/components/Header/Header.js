@@ -23,6 +23,7 @@ export const Header = styled(HeaderConteiner)`
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
+	z-index: 10;
 	top: 0;
 	width: 1000px;
 	height: 120px;

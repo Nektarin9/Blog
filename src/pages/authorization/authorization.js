@@ -55,6 +55,7 @@ const AuthorizationContainer = ({ className }) => {
 				setServerError(`Ошибка запроса. ${error}`);
 			}
 			dispatch(setUser(res))
+			sessionStorage.setItem("userData", JSON.stringify(res))
 		});
 	};
 	const formError = errors?.login?.message || errors?.password?.message;
