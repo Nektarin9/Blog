@@ -1,7 +1,25 @@
+import { useDispatch } from 'react-redux';
 import { Icon } from '../../../../../components';
+import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../actions';
+import { useServerRequest } from '../../../../../hooks';
 import styled from 'styled-components';
 
-const CommentContainer = ({ className, id, author, content, publishedAt }) => {
+const CommentContainer = ({ className, postId, id, author, content, publishedAt }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+
+	const onNewCommentRemove = (id) => {
+		dispatch(
+			openModal({
+				text: 'Удалить комментраий?',
+				onConfirm: () => {
+					dispatch(removeCommentAsync(requestServer, postId, id));
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
+	};
 	return (
 		<div className={className}>
 			<div className="comment">
@@ -17,7 +35,12 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 						{author}
 					</div>
 					<div className="published-at">
-						<Icon size="21px" id="fa-calendar-o" margin="0 10px 0 0" onClick={() => {}} />
+						<Icon
+							size="21px"
+							id="fa-calendar-o"
+							margin="0 10px 0 0"
+							onClick={() => {}}
+						/>
 
 						{publishedAt}
 					</div>
@@ -25,7 +48,12 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 
 				<div className="comment-text">{content}</div>
 			</div>
-			<Icon size="21px" id="fa-trash-o" margin="0 5px 0 10px" onClick={() => {}} />
+			<Icon
+				size="21px"
+				id="fa-trash-o"
+				margin="0 5px 0 10px"
+				onClick={() => onNewCommentRemove(id)}
+			/>
 		</div>
 	);
 };
