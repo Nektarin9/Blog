@@ -13,6 +13,7 @@ const PostContentContainer = ({
 			<img src={imageUrl} alt={title}></img>
 			<H2>{title}</H2>
 			<SpacialPanel
+				id={id}
 				publishedAt={publishedAt}
 				margin="-20px 0 20px"
 				editButtom={

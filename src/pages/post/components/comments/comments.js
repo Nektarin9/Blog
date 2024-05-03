@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Icon } from '../../../../components';
-import { Comment } from './components/comment';
+import { Comment } from './component/comment';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserId } from '../../../../selectirs';
 import { useServerRequest } from '../../../../hooks';

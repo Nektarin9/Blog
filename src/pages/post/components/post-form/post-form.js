@@ -1,5 +1,5 @@
 import { Icon, Input } from '../../../../components';
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { SpacialPanel } from '../special-panel/special-panel';
 import { sanitizeContent } from './utils';
 import { useDispatch } from 'react-redux';
@@ -12,36 +12,51 @@ const PostFormContainer = ({
 	className,
 	post: { id, title, imageUrl, content, publishedAt },
 }) => {
-	const imageRef = useRef(null);
-	const titleRef = useRef(null);
+	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+	const [titlelValue, setTitlelValue] = useState(title);
 	const contentRef = useRef(null);
-	const requestServer = useServerRequest();
+
+	useLayoutEffect(() => {
+		setImageUrlValue(imageUrl);
+		setTitlelValue(title);
+	}, [imageUrl, title]);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const requestServer = useServerRequest();
+
 	const onSave = () => {
-		const newImage = imageRef.current.value;
-		const newTitle = titleRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 		dispatch(
 			savePostAsync(requestServer, {
 				id,
-				imageUrl: newImage,
-				title: newTitle,
+				imageUrl: imageUrlValue,
+				title: titlelValue,
 				content: newContent,
 			}),
-		).then(() => navigate(`/post/${id}`));
+		).then(({ id }) => navigate(`/post/${id}`));
 	};
+
+	const onImageChange = ({ target }) => setImageUrlValue(target.value);
+	const onTitleChange = ({ target }) => setTitlelValue(target.value);
+
 	return (
 		<div className={className}>
-			<Input ref={imageRef} defaultValue={imageUrl} placeholder="Изображние..." />
-			<Input ref={titleRef} defaultValue={title} placeholder="Заголовок..." />
+			<Input
+				onChange={onImageChange}
+				value={imageUrlValue}
+				placeholder="Изображние..."
+			/>
+			<Input
+				onChange={onTitleChange}
+				value={titlelValue}
+				placeholder="Заголовок..."
+			/>
 			<SpacialPanel
+				id={id}
 				publishedAt={publishedAt}
 				margin="20px 0"
-				editButtom={
-					<Icon id="fa-floppy-o" margin="0 10px 0 0" onClick={onSave} />
-				}
+				editButtom={<Icon id="fa-floppy-o" onClick={onSave} />}
 			/>
 			<div
 				ref={contentRef}
@@ -63,6 +78,8 @@ export const PostForm = styled(PostFormContainer)`
 
 	& .post-text {
 		font-size: 18px;
+		min-height: 80px;
+		border: 1px solid black;
 		white-space: pre-line;
 	}
 `;

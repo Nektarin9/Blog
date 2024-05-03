@@ -44,7 +44,7 @@ const ControlPanelContainer = ({ className }) => {
 				<Icon onClick={() => navigate(-1)} id="fa-backward" margin="10px 0 0 0" />
 
 				<Link to={'/post'}>
-					<Icon id="fa-file-text-o" margin="10px 0 0 16px" />
+					<Icon id="fa-file-text-o" margin="10px 0 0 16px"/>
 				</Link>
 				<Link to={'/users'}>
 					<Icon id="fa-users" margin="10px 0 0 16px" />

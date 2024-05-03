@@ -1,2 +1,2 @@
 export * from "./Logo"
-export * from "./ControlPanel/ControlPanel"
+export * from "./control-panel/control-panel"
