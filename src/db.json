@@ -29,13 +29,6 @@
       "role_id": 1
     },
     {
-      "id": "7630",
-      "login": "awegaweg",
-      "password": "6258210qwe",
-      "register_at": "05-03-2024 23:19",
-      "role_id": 2
-    },
-    {
       "id": "7caf",
       "login": "gregesrgesrg",
       "password": "111111111",
@@ -173,13 +166,6 @@
       "pulished_at": "05-03-2024 23:10",
       "title": "fawfafw",
       "content": "fawfafwwaf"
-    },
-    {
-      "id": "5b85",
-      "image_url": "https://fastly.picsum.photos/id/678/280/150.jpg?hmac=ETioJ2UKjC30Ze3IoDJ6nhKQvteHnDUYusKASu0dJDk",
-      "pulished_at": "05-03-2024 23:10",
-      "title": "fawefawef",
-      "content": "444"
     }
   ],
   "comments": [
@@ -238,6 +224,20 @@
       "post_id": "8242",
       "pulished_at": "05-06-2024 01:59",
       "content": "хмм"
+    },
+    {
+      "id": "74e7",
+      "author_id": "001",
+      "post_id": "004",
+      "pulished_at": "05-06-2024 2:1",
+      "content": "ыукрыукр"
+    },
+    {
+      "id": "ae9f",
+      "author_id": "001",
+      "post_id": "004",
+      "pulished_at": "05-06-2024 2:1",
+      "content": "пкпкпк"
     }
   ],
   "sessions": [
@@ -255,6 +255,17 @@
     {
       "id": "9ac4",
       "hash": "0.19227131851895506997607299126684665679931640625000",
+      "user": {
+        "id": "001",
+        "login": "vlad",
+        "password": "qwerty123",
+        "registeredAt": "2024-02-25 12:48",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "d517",
+      "hash": "0.78323789329086057620088467956520617008209228515625",
       "user": {
         "id": "001",
         "login": "vlad",
