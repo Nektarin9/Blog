@@ -8,11 +8,11 @@ import { styled } from 'styled-components';
 
 const Page = styled.div`
 	padding: 120px 0 20px;
-	height: auto;
-	background-color: white;
+
 `;
 
 const AppColumn = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -23,15 +23,15 @@ const AppColumn = styled.div`
 `;
 
 export const Blog = () => {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	useLayoutEffect(() => {
-		const currentUserDataJSON = sessionStorage.getItem("userData")
+		const currentUserDataJSON = sessionStorage.getItem('userData');
 		if (!currentUserDataJSON) {
-			return
+			return;
 		}
-		const currentUserData = JSON.parse(currentUserDataJSON)
-		dispatch(setUser({...currentUserData, roleId: Number(currentUserData.roleId)}))
-	}, [dispatch])
+		const currentUserData = JSON.parse(currentUserDataJSON);
+		dispatch(setUser({ ...currentUserData, roleId: Number(currentUserData.roleId) }));
+	}, [dispatch]);
 	return (
 		<>
 			<AppColumn>
@@ -42,15 +42,15 @@ export const Blog = () => {
 						<Route path="/login" element={<Authorization />} />
 						<Route path="/register" element={<Registration />} />
 						<Route path="/users" element={<Users />} />
-						<Route path="/post" element={<Post/>} />
-						<Route path="/post/:id" element={<Post/>} />
-						<Route path="/post/:id/edit" element={<Post/>} />
+						<Route path="/post" element={<Post />} />
+						<Route path="/post/:id" element={<Post />} />
+						<Route path="/post/:id/edit" element={<Post />} />
 
 						<Route path="*" element={<div>Ошибка</div>} />
 					</Routes>
 				</Page>
 				<Footer />
-				<Modal/>
+				<Modal />
 			</AppColumn>
 		</>
 	);
