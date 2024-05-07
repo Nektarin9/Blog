@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Icon } from '../../../../components';
 import { Comment } from './component/comment';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserId } from '../../../../selectirs';
+import { selectUserId, selectUserRole } from '../../../../selectirs';
 import { useServerRequest } from '../../../../hooks';
 import { addCommentAsync } from '../../../../actions';
+import { ROLE } from '../../../../constants';
 import styled from 'styled-components';
 
 const CommentsContainer = ({ className, comments, postId }) => {
@@ -12,14 +13,18 @@ const CommentsContainer = ({ className, comments, postId }) => {
 	const userId = useSelector(selectUserId);
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+	const userRole = useSelector(selectUserRole);
 
 	const onNewCommentAdd = (userId, postId, content) => {
 		dispatch(addCommentAsync(requestServer, userId, postId, content));
 		setNewComent('');
 	};
+	const isGuest = userRole === ROLE.GUEST;
+
+
 	return (
 		<div className={className}>
-			<div className="new-comment">
+			{!isGuest &&<div className="new-comment">
 				<textarea
 					name="comment"
 					onChange={({ target }) => {
@@ -33,7 +38,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 					margin="0 0 0 10px"
 					onClick={() => onNewCommentAdd(userId, postId, newComent)}
 				/>
-			</div>
+			</div>}
 			<div className="comments">
 				{comments.map(({ id, author, content, publishedAt }) => (
 					<Comment
@@ -53,6 +58,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 export const Comments = styled(CommentsContainer)`
 	margin: 0 auto;
 	width: 580px;
+
 	& .new-comment {
 		display: flex;
 		width: 100%;

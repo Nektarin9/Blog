@@ -9,11 +9,11 @@ import { selectPost } from '../../selectirs';
 import { ROLE } from '../../constants';
 import styled from 'styled-components';
 
-
 const PostContainer = ({ className }) => {
 	const [error, setError] = useState(null);
 	const dispatch = useDispatch();
 	const post = useSelector(selectPost);
+
 	const params = useParams();
 	const [isLodaging, setIsLoading] = useState(true);
 	const isCreating = !!useMatch('/post');
@@ -39,6 +39,7 @@ const PostContainer = ({ className }) => {
 	if (isLodaging) {
 		return null;
 	}
+
 	const SpecificPostPage =
 		isCreating || isEditing ? (
 			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
@@ -56,6 +57,8 @@ const PostContainer = ({ className }) => {
 };
 
 export const Post = styled(PostContainer)`
+	height: 100%;
 	padding: 0 80px;
 	margin: 40px 0;
+	background-color: white;
 `;
