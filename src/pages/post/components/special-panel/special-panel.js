@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Icon } from '../../../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserRole } from '../../../../selectirs';
@@ -73,3 +75,9 @@ export const SpacialPanel = styled(SpacialPanelConteiner)`
 		font-size: 18px;
 	}
 `;
+
+SpacialPanel.propTypes = {
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	editButtom: PropTypes.node.isRequired,
+};

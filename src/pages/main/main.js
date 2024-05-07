@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import PropTypes from "prop-types"
 import { useEffect, useMemo, useState } from 'react';
 import { PostCard } from './components/post-card/post-card';
 import { useServerRequest } from '../../hooks';
