@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { savePostAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
 import styled from 'styled-components';
+import { PROP_TYPE } from '../../../../constants';
 
 const PostFormContainer = ({
 	className,
@@ -56,7 +57,9 @@ const PostFormContainer = ({
 				id={id}
 				publishedAt={publishedAt}
 				margin="20px 0"
-				editButtom={<Icon id="fa-floppy-o" onClick={onSave} margin="0 10px 0 0"/>}
+				editButtom={
+					<Icon id="fa-floppy-o" onClick={onSave} margin="0 10px 0 0" />
+				}
 			/>
 			<div
 				ref={contentRef}
@@ -83,3 +86,7 @@ export const PostForm = styled(PostFormContainer)`
 		white-space: pre-line;
 	}
 `;
+
+PostForm.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+};
